@@ -1,12 +1,10 @@
-<?php
-// index.php
-?>
+<?php include 'header.php'; ?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROUND LAB - 사진과 똑같은 디자인</title>
+    <title>ROUND LAB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
@@ -34,88 +32,6 @@
             color: inherit;
         }
 
-        /* --- Header --- (생략 없이 원본 유지) */
-        header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05); /* 사진에 보이는 그림자 */
-            animation: fadeInDown 0.6s ease-out;
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            /* 📌 수정: 햄버거 메뉴 대응을 위해 space-between 유지 */
-            justify-content: space-between;
-            align-items: center;
-            height: 50px;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #333;
-            letter-spacing: 0.5px;
-        }
-
-        /* 📌 햄버거 메뉴 토글 버튼 (기본 숨김) */
-        .menu-toggle {
-            display: none; 
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.05rem;
-            color: #666;
-            transition: color 0.3s;
-            z-index: 1001;
-            margin-left: 1rem;
-        }
-
-        .nav {
-            display: flex;
-            gap: 2.2rem;
-            list-style: none;
-            margin: 0;
-        }
-
-        .nav a {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #666;
-            transition: color 0.3s;
-        }
-        .nav a:hover {
-            color: #333;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 1.0rem;
-            align-items: center;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.05rem;
-            color: #666;
-            transition: color 0.3s;
-        }
-        .icon-btn:hover {
-            color: #333;
-        }
 
         /* --- Main Banner --- (생략 없이 원본 유지) */
         .main-banner {
@@ -388,10 +304,15 @@
         }
 
         .products-grid {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem; /* 사진과 동일한 간격 */
             max-width: 1100px;
+        }
+
+        .products-grid.active-grid{
+            display: grid; 
+            /* active-grid 클래스가 있을 때만 표시 */
         }
 
         .product-card {
@@ -674,33 +595,6 @@
 
         @media (max-width: 992px) {
             
-            /* 📌 Header: 햄버거 메뉴 활성화/내비게이션 모바일 스타일 */
-            .menu-toggle { display: block; }
-            .nav { 
-                display: none; 
-                flex-direction: column;
-                position: absolute;
-                top: 70px; /* Header 높이에 맞게 조정 */
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                padding: 0 5%;
-                z-index: 999;
-            }
-            .nav.open { display: flex; }
-            .nav li {
-                width: 100%;
-                padding: 0.8rem 0;
-                border-bottom: 1px solid #eee;
-                text-align: center;
-            }
-            .nav li:last-child { border-bottom: none; }
-
-            /* Header Icons 순서 및 위치 조정 (기존 유지) */
-            .header-icons { order: 3; margin-left: auto; }
-            .logo { order: 1; }
-            
             /* 📌 Main Banner (태블릿에서 전체 레이아웃 변경) */
             .main-banner { min-height: 500px; margin: 2rem 3%; }
             .banner-title { font-size: 2rem; }
@@ -860,29 +754,7 @@
     </style>
 </head>
 <body>
-    
-    <header>
-        <div class="header-container">
-            <div class="logo">ROUND LAB</div>
-            
-            <ul class="nav">
-                <li><a href="#shop">SHOP</a></li>
-                <li><a href="#review">REVIEW</a></li>
-                <li><a href="#brand">BRAND</a></li>
-                <li><a href="#center">C/S CENTER</a></li>
-            </ul>
-            <div class="header-icons">
-            <button class="menu-toggle icon-btn" aria-label="메뉴 열기">
-                <i class="fas fa-bars"></i>
-            </button>
-                <button class="icon-btn"><i class="fas fa-search"></i></button> 
-                <a href="login.php"><button class="icon-btn"><i class="fas fa-user"></i></button> </a> 
-                <a href="cart.php"><button class="icon-btn"><i class="fas fa-shopping-cart"></i></button> </a>
-            </div>
-        </div>
-    </header>
 
-    
     <section class="main-banner">
         
         <img src="물.jpg" 
@@ -925,41 +797,60 @@
 
     
     <section class="products-section">
-        <div class="section-header">
-            <div class="section-tab active">Best</div>
-            <div class="section-tab">Set</div>
-            <div class="section-tab">Sale</div>
-        </div>
+    <div class="section-header">
+        <div class="section-tab active" data-tab="best">Best</div>
+        <div class="section-tab" data-tab="set">Set</div>
+        <div class="section-tab" data-tab="sale">Sale</div>
+    </div>
 
-        <div class="products-grid">
-            <?php
-            // 사진에 보이는 3개의 제품 데이터
-            $products = [
-                ['name' => '1025 독도 토너 대용량 500ML', 'price' => '26,000원', 'image' => '토너_대.png'],
-                ['name' => '1025 독도 로션 200ML', 'price' => '26,000원', 'image' => '로션.png'],
-                ['name' => '자작나무 수분 선크림 50ML', 'price' => '26,000원', 'image' => '토너.png'],
-            ];
+    <?php
+    // 탭별 제품 데이터 정의
+    $all_products = [
+        'best' => [
+            ['name' => '1025 독도 토너 대용량 500ML', 'price' => '26,000원', 'image' => '토너_대.png'],
+            ['name' => '1025 독도 로션 200ML', 'price' => '26,000원', 'image' => '로션.png'],
+            ['name' => '1025 독도 크림 80ml', 'price' => '25,600원', 'image' => '크림.png'],
+        ],
+        'set' => [
+            ['name' => '1025 독도 토너+로션 200ml 2종 세트', 'price' => '28,000원', 'image' => 'set1.png'],
+            ['name' => '1025 독도 토너 2종 세트', 'price' => '40,000원', 'image' => 'set2.png'],
+            // Set 제품 추가
+            ['name' => '1025 독도 토너500ml+로션200ml 2종 세트', 'price' => '36,000원', 'image' => 'set3.png'],
+            ['name' => '1025 독도 패드 (70매입) 2개 세트', 'price' => '34,000원', 'image' => 'set4.png'],
+        ],
+        'sale' => [
+            ['name' => '1025 독도 수분 워터겔 마스크 30ml', 'price' => '10,000원', 'image' => 'sale1.png'],
+            ['name' => '1025 독도 토너500ml+로션200ml 2종 세트', 'price' => '22,000원', 'image' => 'sale2.png'],
+        ],
+    ];
 
-            $delay = 0; // 지연 시간 변수 설정
-            foreach ($products as $product) {
-                echo '
-                <div class="product-card" data-aos="fade-up" data-aos-delay="' . $delay . '">
-                    <div class="product-image">
-                        <img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '">
-                    </div>
-                    <div class="product-info">
-                        <p class="product-name">' . htmlspecialchars($product['name']) . '</p>
-                        <p class="product-price">' . htmlspecialchars($product['price']) . '</p>
-                    </div>
-                    <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+    // 각 탭별 제품 목록을 렌더링
+    foreach ($all_products as $tab_name => $products) {
+        // 첫 번째 탭 ('best')에만 'active-grid' 클래스를 추가하여 기본으로 보이게 설정
+        $is_active = ($tab_name === 'best') ? ' active-grid' : '';
+        echo '<div class="products-grid products-grid-' . htmlspecialchars($tab_name) . $is_active . '" data-tab-content="' . htmlspecialchars($tab_name) . '">';
+
+        $delay = 0; // 지연 시간 변수 설정
+        foreach ($products as $product) {
+            echo '
+            <div class="product-card" data-aos="fade-up" data-aos-delay="' . $delay . '">
+                <div class="product-image">
+                    <img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '">
                 </div>
-                ';
-                $delay += 150; // 다음 카드에 0.15초 지연 추가
-            }
-            ?>
-        </div>
-        
-        </section>
+                <div class="product-info">
+                    <p class="product-name">' . htmlspecialchars($product['name']) . '</p>
+                    <p class="product-price">' . htmlspecialchars($product['price']) . '</p>
+                </div>
+                <button class="add-to-cart-btn"><i class="fas fa-plus"></i></button>
+            </div>
+            ';
+            $delay += 150; // 다음 카드에 0.15초 지연 추가
+        }
+        echo '</div>'; // products-grid-{$tab_name} 닫기
+    }
+    ?>
+    
+</section>
 
     
     <section class="recommendation-section">
@@ -1075,6 +966,38 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.section-tab');
+    const productGrids = document.querySelectorAll('.products-grid');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // 1. 모든 탭 버튼의 활성 상태 제거
+            tabs.forEach(t => t.classList.remove('active'));
+
+            // 2. 클릭된 탭 버튼을 활성화
+            this.classList.add('active');
+
+            // 3. 클릭된 탭의 data-tab 값 가져오기 (예: 'best', 'set')
+            const targetTab = this.getAttribute('data-tab');
+
+            // 4. 모든 제품 목록의 활성 상태 제거 (숨기기)
+            productGrids.forEach(grid => grid.classList.remove('active-grid'));
+
+            // 5. 해당 탭의 제품 목록을 찾아서 활성화 (보이기)
+            const targetGrid = document.querySelector('.products-grid[data-tab-content="' + targetTab + '"]');
+            if (targetGrid) {
+                targetGrid.classList.add('active-grid');
+                
+                // AOS (Animate On Scroll)를 사용하는 경우, 새로운 콘텐츠 로드 후 애니메이션을 다시 실행
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh(); 
+                }
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
